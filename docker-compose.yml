@@ -1,0 +1,61 @@
+services:
+
+  #Servidor web
+  webservise:
+    image: nginx:latest
+    container_name: container-nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf   
+
+  #Ambiente de desenvolvimento
+
+  php:
+    image: php:3.21
+    container_name: container-php
+    #working_dir: /var/www/html
+    volumes:
+      - ./php/public:/var/www/html/public
+    #networks:
+    #  - app-network
+  
+  db_mysql:
+    image: mysql:9.2.0
+    container_name: container-mysql
+    ports:
+      - "3306:3306"
+    restart:
+      unless-stopped
+    volumes:
+      - ./data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root  #user = root pass: root
+      MYSQL_DATABASE: db_web
+      MYSQL_USER: user
+      MYSQL_PASSWORD: user #user = user pass: user
+    
+    networks:
+      - mynetwork  # Adiciona à rede 'mynetwork'
+
+
+  python-app:
+    image: python:3.9-slim  # Usando a imagem oficial do Python
+    container_name: python-container
+    volumes:
+      - ./python/src:/app  # Mapeia o diretório local para o diretório /app no container
+    working_dir: /app  # Configura o diretório de trabalho dentro do container
+    networks:
+      - mynetwork  # Adiciona à rede 'mynetwork'
+    stdin_open: true  # Mantém o terminal aberto
+    tty: true         # Permite interação com o terminal
+
+    command: bash -c "pip install mysql-connector-python && tail -f /dev/null"
+    
+networks:
+  mynetwork:
+    external: true
+
+
+
+
