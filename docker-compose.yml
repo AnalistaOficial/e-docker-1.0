@@ -52,3 +52,4 @@ services:
 networks:
   mynetwork:
     driver: bridge  # Cria uma rede Docker específica para este compose
+    name: mynetwork
