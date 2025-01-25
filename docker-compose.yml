@@ -18,8 +18,6 @@ services:
       - ./php/public:/var/www/html/public
     networks:
       - mynetwork
-    expose:
-      - "9000"  # Garante que a porta 9000 do container esteja disponível na rede interna
 
   # Banco de dados MySQL
   db_mysql:
