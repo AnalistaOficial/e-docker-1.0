@@ -1,3 +1,6 @@
+#parando os servidores
+docker-compose down -v
+
 # Remover contêineres parados
 docker container prune -f
 
