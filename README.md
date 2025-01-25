@@ -84,7 +84,7 @@ docker network create mynetwork
 
 3. Suba os serviços:
 
-Antes de executar o dockr-compose, rodar este comando.
+    Antes de executar o docker-compose, rodar este comando.
    ```bash
    cd php 
    docker build -t php:3.21 .
