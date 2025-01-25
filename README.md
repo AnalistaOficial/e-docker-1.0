@@ -1,8 +1,5 @@
-# Meu Projeto
-
 ![Status](https://img.shields.io/badge/status-finalizado-brightgreen)
 
-Este é um exemplo de README para o projeto.
 
 
 <h1 align="center">Estudo com Docker Compose  - e-docker-1.0</h1>
