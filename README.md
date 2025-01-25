@@ -79,7 +79,7 @@ Todos os containers estão conectados a uma rede Docker externa chamada `mynetwo
 
 2. Suba os serviços:
 
-    Para subir os serviços basta executar o comando abaixo.
+    Para subir os serviços, basta executar o comando abaixo.
    ```bash
    . start.sh
    ```
