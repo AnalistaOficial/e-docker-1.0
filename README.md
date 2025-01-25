@@ -89,7 +89,7 @@ docker network create mynetwork
    cd php 
    docker build -t php:3.21 .
    ```
-
+    Após a execução acima, voltar para a raiz e executar o docker-compose
    ```bash
    docker-compose up -d
    ```
