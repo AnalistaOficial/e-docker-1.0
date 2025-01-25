@@ -90,6 +90,7 @@ Todos os containers estão conectados a uma rede Docker externa chamada `mynetwo
    ```bash
    . end.sh
    ```   
+  Isso finalizará todos os containers definidos no `docker-compose.yml`.
 
 4. Acesse os serviços:
 
