@@ -1,61 +1,56 @@
 services:
-
-  #Servidor web
-  webservise:
+  # Servidor web (Nginx)
+  webservice:
     image: nginx:latest
     container_name: container-nginx
     ports:
       - "80:80"
     volumes:
-      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf   
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+    networks:
+      - mynetwork
 
-  #Ambiente de desenvolvimento
-
+  # Ambiente de desenvolvimento PHP
   php:
-    image: php:3.21
+    image: php:3.21  # Use uma imagem PHP-FPM estável e recente
     container_name: container-php
-    #working_dir: /var/www/html
     volumes:
       - ./php/public:/var/www/html/public
-    #networks:
-    #  - app-network
-  
+    networks:
+      - mynetwork
+    expose:
+      - "9000"  # Garante que a porta 9000 do container esteja disponível na rede interna
+
+  # Banco de dados MySQL
   db_mysql:
-    image: mysql:9.2.0
+    image: mysql:9.2.0  # Use uma versão estável do MySQL
     container_name: container-mysql
     ports:
       - "3306:3306"
-    restart:
-      unless-stopped
+    restart: unless-stopped
     volumes:
       - ./data:/var/lib/mysql
     environment:
-      MYSQL_ROOT_PASSWORD: root  #user = root pass: root
+      MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: db_web
       MYSQL_USER: user
-      MYSQL_PASSWORD: user #user = user pass: user
-    
+      MYSQL_PASSWORD: user
     networks:
-      - mynetwork  # Adiciona à rede 'mynetwork'
+      - mynetwork
 
-
+  # Aplicação Python
   python-app:
-    image: python:3.9-slim  # Usando a imagem oficial do Python
+    image: python:3.9-slim
     container_name: python-container
     volumes:
-      - ./python/src:/app  # Mapeia o diretório local para o diretório /app no container
-    working_dir: /app  # Configura o diretório de trabalho dentro do container
+      - ./python/src:/app
+    working_dir: /app
     networks:
-      - mynetwork  # Adiciona à rede 'mynetwork'
-    stdin_open: true  # Mantém o terminal aberto
-    tty: true         # Permite interação com o terminal
-
+      - mynetwork
+    stdin_open: true
+    tty: true
     command: bash -c "pip install mysql-connector-python && tail -f /dev/null"
-    
+
 networks:
   mynetwork:
-    external: true
-
-
-
-
+    driver: bridge  # Cria uma rede Docker específica para este compose
