@@ -83,14 +83,14 @@ Todos os containers estão conectados a uma rede Docker externa chamada `mynetwo
    ```bash
    . start.sh
    ```
-   Isso iniciará todos os containers definidos no `docker-compose.yml`.
+    Isso iniciará todos os containers definidos no `docker-compose.yml`.
 
 3. Baixe os serviços:
     Para finalizar os serviços, basta executar o comando abaixo.
    ```bash
    . end.sh
    ```   
-  Isso finalizará todos os containers definidos no `docker-compose.yml`.
+    Isso finalizará todos os containers definidos no `docker-compose.yml`.
 
 4. Acesse os serviços:
 
