@@ -58,11 +58,8 @@ Este projeto utiliza o Docker Compose para configurar e gerenciar um ambiente co
 
 ## Rede
 
-Todos os containers estão conectados a uma rede Docker externa chamada `mynetwork`. Certifique-se de que a rede foi criada antes de subir os containers:
+Todos os containers estão conectados a uma rede Docker externa chamada `mynetwork`.
 
-```bash
-docker network create mynetwork
-```
 
 ## Configuração e Uso
 
@@ -80,22 +77,15 @@ docker network create mynetwork
    cd <DIRETORIO_DO_REPOSITORIO>
    ```
 
-2. Certifique-se de que a rede `mynetwork` está criada:
+2. Suba os serviços:
 
+    Para subir os serviços basta executar o comando abaixo.
    ```bash
-   docker network create mynetwork
+   . start.sh
    ```
-
-3. Suba os serviços:
-
-    Antes de executar o docker-compose, rodar este comando.
+    Para finalizar os serviços, basta executar o comando abaixo.
    ```bash
-   cd php 
-   docker build -t php:3.21 .
-   ```
-    Após a execução acima, voltar para a raiz e executar o docker-compose
-   ```bash
-   docker-compose up -d
+   . end.sh
    ```
 
    Isso iniciará todos os containers definidos no `docker-compose.yml`.
