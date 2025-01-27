@@ -12,6 +12,8 @@ services:
 
   # Ambiente de desenvolvimento PHP
   php:
+    build:
+      context: ./php # Excuta o Dockerfile no diretório /php para contruir esta imagem
     image: php:3.21  # Use uma imagem PHP-FPM estável e recente
     container_name: container-php
     volumes:
